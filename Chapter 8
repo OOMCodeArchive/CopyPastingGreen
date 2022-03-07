@@ -1,0 +1,65 @@
+start
+  Declarations
+    num NUM_STUDENTS = 5
+    num NUM_CHAPTERS = 3
+    num NUM_HOURS = 4
+    string names[NUM_STUDENTS]
+    num grades[NUM_STUDENTS]
+    num i
+    int temp;
+    string strTemp;
+    num comparisons;
+    string didSwap;
+    num bonus[NUM_CHAPTERS][NUM_HOURS] =
+     { 1, 1, 2, 2 }, { 2, 2, 3, 3 }, { 3, 4, 5, 6 }
+    num chapters
+    num hours
+    
+  fillArray()
+  sortArray
+  displayArray()
+  bonusLookup()
+stop
+
+fillArray()
+  for i = 0 to NUM_STUDENTS – 1 Step 1
+    output "Name Grade? "
+    input names[i], grades[i]
+  endfor
+return
+
+sortArray()
+  comparisons = NUM_STUDENTS - 1;
+  didSwap = "Y";
+  while didSwap = "Y"
+    didSwap = "N"
+    for i = 0 to comparisons - 1 Step 1
+      if grades[i] < grades[i + 1] then
+        // swap
+        temp = grades[i + 1];
+        grades[i + 1] = grades[i];
+        grades[i] = temp;
+        strTemp = names[i + 1];
+        names[i + 1] = names[i];
+        names[i] = strTemp;
+        didSwap = "Y";
+      endif
+    endfor
+    comparisons = comparisons - 1
+  endwhile
+return
+
+displayArray()
+  for i = 0 to NUM_STUDENTS – 1 Step 1
+    output grades[i], " - ", names[i]
+  endfor
+return
+
+bonusLookup()
+  output "Chapters Hours? "
+  input chapters, hours
+  if hours > NUM_HOURS then
+    hours = NUM_HOURS
+  endif
+  output "Bonus points: ", bonus[chapters - 1][hours - 1]
+return
